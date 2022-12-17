@@ -1,5 +1,3 @@
-from wordcloud import WordCloud
-
 from matplotlib import pyplot as plt
 import seaborn as sns
 
@@ -37,15 +35,16 @@ mapping = {
 reverse_mapping = {v: k for k, v in mapping.items()}
 
 
-def plot_class_distribution(input_data, class_names=True):
+def plot_class_distribution(input_data, class_names=True, percentage_text=True):
     if class_names:
         data = input_data.copy()
         ax = data["Class"].value_counts().sort_index().plot(
             kind="bar", title="Class Distribution", xlabel="Class", ylabel="Count", rot=35, width=0.7, color=COLOR["main"]
         );
         ratios = data["Class"].value_counts().sort_index().values / data.shape[0] * 100
-        for i, v in enumerate(ratios):
-            plt.text(i - 0.4, 33 * (v + 0.5), str(round(v, 2)) + "%")
+        if percentage_text:
+            for i, v in enumerate(ratios):
+                plt.text(i - 0.4, 33 * (v + 0.5), str(round(v, 2)) + "%")
 
         # set xticklabels from mapping
         ax.set_xticklabels([mapping[i] for i in data["Class"].value_counts().sort_index().index], rotation=35, ha="right")
@@ -57,8 +56,9 @@ def plot_class_distribution(input_data, class_names=True):
             kind="bar", title="Class Distribution", xlabel="Class", ylabel="Count", rot=0, width=0.7, color=COLOR["main"]
         );
         ratios = data["Class"].value_counts().sort_index().values / data.shape[0] * 100
-        for i, v in enumerate(ratios):
-            plt.text(i - 0.4, 33 * (v + 0.5), str(round(v, 2)) + "%")
+        if percentage_text:
+            for i, v in enumerate(ratios):
+                plt.text(i - 0.4, 33 * (v + 0.5), str(round(v, 2)) + "%")
 
     plt.setp(ax.xaxis.get_majorticklabels(), ha='right');
 
@@ -149,6 +149,7 @@ def plot_word_cloud(input_data):
     Use wordcloud to visualize most frequent words.
     https://towardsdatascience.com/how-to-make-word-clouds-in-python-that-dont-suck-86518cdcb61f
     """
+    from wordcloud import WordCloud
 
     # create subplot for 9 classes (3 by 3)
     fig, axes = plt.subplots(3, 3, figsize=(18, 10))
@@ -161,12 +162,7 @@ def plot_word_cloud(input_data):
         # create wordcloud, black and white
         # wordcloud = WordCloud(background_color="white", max_words=1000, contour_width=3, contour_color='steelblue')
         wordcloud = WordCloud(
-            background_color="white", 
-            max_words=100, 
-            max_font_size=40, 
-            random_state=42,
-            contour_color='steelblue',
-        ).generate(text)
+            background_color="white").generate(text)
 
         # plot wordcloud
         axes[i // 3, i % 3].imshow(wordcloud)
