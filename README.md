@@ -15,6 +15,31 @@
 In this project..
 
 
+Repository structure:
+```
+├── ..
+    ├── .gitignore
+    ├── README.md
+    ├── data
+        ├── stage1_solution_filtered.csv.7z
+        ├── stage2_sample_submission.csv.7z
+        ├── stage2_test_text.csv.7z
+        ├── stage2_test_variants.csv.7z
+        ├── stage_2_private_solution.csv.7z
+        ├── test_text.zip
+        ├── test_variants.zip
+        ├── training_text.zip
+        ├── training_variants.zip
+    ├── src
+        ├── data_handler.py
+        ├── EDA.ipynb
+        ├── exploratory_data_analysis.py
+        ├── logger.py
+        ├── utils.py
+        ├── __init__.py
+```
+
+
 ## Instructions 
 
 ### Creating the Environment
