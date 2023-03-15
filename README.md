@@ -79,14 +79,6 @@ The `conda` environment is _strongly_ recommended. To create a `conda` environme
 5. Though not strictly required, use the following command to be able to run the Jupyter notebooks.
 
     ```
-    python -m ipykernel install --user --name PAWS --display-name "CSDS458"
+    python -m ipykernel install --user --name cancer_env --display-name "CSDS458"
     ```
-
-6. Install Nvidia GPU Computing Toolkit CUDA v11.8. The installation of the requirements should take care of this step, but if does not work, be sure to install it from [here](https://developer.nvidia.com/cuda-11.0-download-archive).
-
-
-## Training and Testing Phase
-
-TODO
-
 
